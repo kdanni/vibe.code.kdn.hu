@@ -46,15 +46,21 @@ This repository is structured to demonstrate the full Vibe Coding workflow:
 ### 1. `/prompts`
 Contains the **true source code**—the Natural Language Prompts we used. These are the highly descriptive, context-setting, "Vibe-Setting" instructions given to the LLM.
 
+New prompts should start from `prompts/prompt_template.md` and be stored with a unique ID (for example `p001_basic_cli_tool.md`).
+
 * `prompts/p001_basic_cli_tool.md`: *Vibe: "A Python CLI tool that takes a CSV, checks for missing email fields, and outputs a clean JSON file. It should look professional, with clear error messages."*
 
 ### 2. `/slop`
 This directory holds the raw, **unfiltered AI output** generated directly from the corresponding prompt. This is the code that we accept as long as it works. (Yes, it might be ugly.)
 
+Store generated artifacts next to their prompt ID (e.g., `slop/p001_basic_cli_tool.py`). Use the quick checklist in `slop/README.md` to confirm the vibe before committing.
+
 * `slop/p001_basic_cli_tool.py`: *The generated Python file.*
 
 ### 3. `/results`
 A short README or image showing the final, successful execution and result of the Vibe Code. This is proof that the Vibe was achieved.
+
+Use `results/result_template.md` to document proof that each artifact runs and meets the success criteria.
 
 * `results/p001_cli_output.md`: *Showing the successful terminal run.*
 
