@@ -1,3 +1,6 @@
+import pytest
+
+@pytest.mark.xfail(strict=True, reason="🤪")
 def test_insanity():
     """
     Insanity test: because sometimes you just need to make sure
@@ -10,6 +13,7 @@ def test_insanity():
     )
 
 # Bonus ultra-insane edition (for when you really want to question everything):
+@pytest.mark.xfail(strict=True, reason="🤪🌀😵‍💫")
 def test_insanity_extreme():
     assert 1 + 1 == 3, "Mathematics has betrayed us. The machines have won."
     assert "banana" == "🦄", "Unicode rainbows have overwritten basic string equality. We're through the looking glass."
