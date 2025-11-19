@@ -27,6 +27,7 @@ The `vibe_code.llm` package now contains the building blocks for interacting wit
 - `LLMClientConfig`: captures base URL, API key, timeout, and health endpoint configuration.
 - `LLMServiceHealth`: standardized response returned from the `ping()` method.
 - `RESTLLMClient`: default HTTP client that performs the `/health` (or custom) call.
+- Specialized clients `OpenAIClient`, `GoogleAIClient`, and `HuggingFaceClient` provide conveniences like expected headers.
 - Helper utilities in `vibe_code.llm.helpers` keep URL handling and future shared HTTP behavior centralized.
 
 `scripts/run_prompt.py` demonstrates how to construct the client from environment variables (`LLM_API_BASE_URL`, `LLM_API_KEY`, etc.), execute the health check, and print the resulting status before issuing additional API operations.
