@@ -3,6 +3,7 @@ from unittest.mock import Mock
 import pytest
 
 from vibe_code.llm import LLMClientConfig
+from vibe_code.llm.clients import HuggingFaceClient
 from vibe_code.llm.clients.rest import RESTLLMClient
 from vibe_code.llm.exceptions import LLMServiceResponseError
 from vibe_code.llm.helpers import join_url
@@ -51,3 +52,24 @@ def test_ping_raises_for_error_responses():
 
     with pytest.raises(LLMServiceResponseError):
         client.ping()
+
+
+def test_huggingface_client_ping():
+    config = LLMClientConfig(
+        base_url="https://api-inference.huggingface.co",
+        api_key="hf_...",
+        health_endpoint="/health",
+    )
+    session = Mock()
+    response = build_response(json_payload={"state": "healthy", "healthy": True})
+    session.request.return_value = response
+    client = HuggingFaceClient(config=config, session=session)
+
+    health = client.ping()
+
+    assert health.ok is True
+    assert health.metadata == {"state": "healthy", "healthy": True}
+    args, kwargs = session.request.call_args
+    assert args[0] == "GET"
+    assert args[1] == "https://api-inference.huggingface.co/health"
+    assert kwargs["headers"]["Authorization"] == "Bearer hf_..."
