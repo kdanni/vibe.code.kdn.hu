@@ -1,12 +1,15 @@
 """LLM client utilities and helpers."""
 
 from .interfaces import LLMClient, LLMClientConfig, LLMServiceHealth
-from .clients.rest import RESTLLMClient
+from .clients import GoogleAIClient, HuggingFaceClient, OpenAIClient, RESTLLMClient
 
 __all__ = [
+    "GoogleAIClient",
+    "HuggingFaceClient",
     "LLMClient",
     "LLMClientConfig",
     "LLMServiceHealth",
+    "OpenAIClient",
     "RESTLLMClient",
     "create_default_client",
 ]
